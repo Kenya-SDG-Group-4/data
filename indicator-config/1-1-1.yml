@@ -1,19 +1,22 @@
 ﻿composite_breakdown_label: ''
-computation_units: ''
-copyright: ''
-data_footnote: ''
+computation_units: Percentage (%)
+copyright: GSS
+data_footnote: As differences in the cost of living across the world evolve, the international poverty line has to be periodically updated using new Purchasing Power Parity (PPP) price data to reflect these changes. The last change was in September 2022, when the World Bank adopted $2.15 as the international poverty line using the 2017 PPP. Prior to that, the 2015 update set the international poverty line at $1.90 using the 2011 PPP.
 data_non_statistical: false
 data_notice_class: ''
 data_notice_heading: ''
 data_notice_text: ''
-data_show_map: false
+data_show_map: true
 data_start_values: []
 embedded_feature_footer: ''
 embedded_feature_html: ''
 embedded_feature_tab_title: ''
 embedded_feature_title: ''
 embedded_feature_url: ''
-expected_disaggregations: []
+expected_disaggregations:
+  - AGE
+  - SEX
+  - URBANISATION
 graph_annotations: []
 graph_limits: []
 graph_stacked_disaggregation: ''
@@ -21,12 +24,33 @@ graph_title: global_indicators.1-1-1-title
 graph_titles: []
 graph_type: line
 indicator_name: global_indicators.1-1-1-title
-indicator_number: '1.1.1'
+target_name: global_targets.1-1-title
+indicator_number: 1.1.1
+un_designated_tier: Tier I
+un_custodian_agency: World Bank (WB), International Labour Organisation (ILO)
+goal_meta_link: https://unstats.un.org/sdgs/metadata/?Text=&Goal=1&Target=1.1
+goal_meta_link_text: United Nations Sustainable Development Goals Metadata (PDF 894 KB)
 national_geographical_coverage: ''
 page_content: ''
 permalink: ''
 precision: []
-reporting_status: notstarted
+reporting_status: complete
 sort: ''
 standalone: false
 tags: []
+source_active_1: true
+source_organisation_1: Ghana Statistical Service (GSS)
+source_periodicity_1: 
+source_earliest_available_1: 2013
+source_geographical_coverage_1: Ghana
+source_url_1: https://www2.statsghana.gov.gh/nada/index.php/catalog#_r=1664470556419&collection=&country=&dtype=&from=1960&page=1&ps=&sid=&sk=glss&sort_by=rank&sort_order=desc&to=2015&topic=&view=s&vk=
+source_url_text_1: Ghana Living Standards Survey
+source_release_date_1: 02/10/2018
+source_next_release_1: TBA
+source_statistical_classification_1: Official
+source_contact_1: info@statsghana.gov.gh
+source_active_2: false
+source_active_3: false
+source_active_4: false
+source_active_5: false
+source_active_6: false

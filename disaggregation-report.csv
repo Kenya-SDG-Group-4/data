@@ -1,1 +1,4 @@
 Disaggregation,en,Number of indicators,Number of values
+REF_AREA,Reference area,1,10
+SEX,Sex,1,2
+URBANISATION,Degree of urbanisation,1,2

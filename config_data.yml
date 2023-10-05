@@ -1,4 +1,4 @@
-
+# This is a comment
 # This config file is for use with the `build_data` and `check_data` functions,
 # which are helpers for implementations of Open SDG. This file allows easy use
 # of those functions without altering Python code.
@@ -9,7 +9,6 @@
 # languages. Each build is in its own subfolder - one for each language.
 languages:
   - en
-  - es
 
 # Destination directory
 # ---------------------
@@ -20,7 +19,7 @@ site_dir: _site
 # -----------
 # This identifies a file containing the schema (possible fields) for metadata.
 # Currently this needs to be a prose.io config, and defaults to '_prose.yml'.
-schema_file: metadata_schema.yml
+schema_file: _prose.yml
 
 # Source directory
 # ----------------
@@ -39,26 +38,35 @@ src_dir: ''
 # folder. Further, each item can have any/all of the parameters that class uses.
 # The defaults below show what is used when this is omitted.
 inputs:
-  - class: InputCsvData
-    # This describes the data files, relative to the "src_dir" indicated above.
-    path_pattern: data/*-*.csv
+  - class: InputSdmxMl_Multiple
+    path_pattern: 'data/*.xml'
+    dimension_map:
+      REF_AREA|GH: ''
+    drop_dimensions:
+      - SOURCE_DETAIL
+      - NATURE
+      - FREQ
+      - REPORTING_TYPE
+    drop_singleton_dimensions: true
+    dsd: 'GSS_DSD.xml'
+    import_codes: true
+  - class: InputWordMeta
+    path_pattern: meta/*-*.docm
   - class: InputYamlMeta
     path_pattern: indicator-config/*-*.yml
-    git: false
-  - class: InputYamlMeta
-    # This describes the meta files, relative to the "src_dir" indicated above.
-    path_pattern: meta/*-*.yml
-    # This specifies whether or not to use Git to calculate the "last updated"
-    # dates for data files.
-    git: true
-    # This specifies an alternate folder to look in for Git-versioned data files,
-    # when calculating the "last updated" dates for data files. This defaults to
-    # "data" (the folder where the data files actually exist.) Most sites will not
-    # need to change this setting. It is intended for sites where the data needs
-    # to be "built" before being processed by sdg-build.
-    git_data_dir: data
-  - class: InputSdmxMeta
-    meta_suffix: __GLOBAL
+  - class: InputCsvData
+    # This describes the data files, relative to the "src_dir" indicated above.
+    path_pattern: data/*-*.csv    
+
+# Metadata Schema
+# This inputs multiple metadata schema to control which metadata tabs
+# the various fields appear in (eg, National, Global, Sources)
+schema:
+  - class: SchemaInputOpenSdg
+    schema_path: _prose.yml
+#  - class: SchemaInputSdmxMsd
+#    schema_path: SDG_MSD.xml
+#    scope: national
 
 # Translations
 # ------------
@@ -77,6 +85,12 @@ translations:
   # This pulls in translations from a local 'translations' folder.
   - class: TranslationInputYaml
     source: translations
+  # This pulls in translations from a DSD
+  - class: TranslationInputSdmx
+    source: 'GSS_DSD.xml'
+  # This pulls in translations from an MSD
+ # - class: TranslationInputSdmxMsd
+ #   source: SDG_MSD.xml
 
 # Reporting status extra fields
 # -----------------------------
@@ -92,12 +106,25 @@ reporting_status_extra_fields: []
 # below and adjust if you would like to use the Open SDG mapping functionality.
 # Note that the GeoJSON files can either be remote (as in the example below) or
 # local, relative to the src_dir specified above.
-#map_layers:
-#  - geojson_file: https://geoportal1-ons.opendata.arcgis.com/datasets/4fcca2a47fed4bfaa1793015a18537ac_4.geojson
-#    name_property: rgn17nm
-#    id_property: rgn17cd
-#    output_subfolder: regions
-#    filename_prefix: indicator_
+map_layers:
+  - geojson_file: geojsons/GHANA_10_REGIONS_simplified.geojson
+    name_property: Name_en
+    id_property: REGIONID
+    output_subfolder: regions_10
+    filename_prefix: indicator_
+  - geojson_file: geojsons/GHANA_16_REGIONS_simplified.geojson
+    name_property: Name_en
+    id_property: REGIONID
+    output_subfolder: regions_16
+    filename_prefix: indicator_
+  - geojson_file: geojsons/GHANA_272_DISTRICTS_simplified.geojson
+    name_property: Name_en
+    id_property: DISTRICTID
+    output_subfolder: district_272
+    filename_prefix: indicator_
+  
+
+
 
 # Documentation settings
 # ----------------------
@@ -109,22 +136,22 @@ docs_branding: SDG data build documentation
 docs_intro: This is a list of examples of endpoints and output that are
   available on this service. Click each of the links below for more information
   on the available output.
-# This can be uncommented and updated so allow links to your indicator pages.
+# This can be uncommented and updated to allow links to your indicator pages.
 # The URL here should have [id] instead of the indicator ID.
-#docs_indicator_url: https://my-github-org/my-site-repository/[id]
+docs_indicator_url: https://my-github-org/my-site-repository/[id]
 # This can be uncommented to show translation columns in the disaggregation report.
-#docs_translate_disaggregations: true
+docs_translate_disaggregations: true
 # This can be uncommented to show additional columns in the disaggregation report.
 # This is mainly intended to show units of measurement and series, which are not
 # normally considered "disaggregation".
 # docs_extra_disaggregations: ['Units', 'Series']
 
-# This controls the metadata report which is part of the automatic documentation.
-# More info can be found at https://open-sdg.readthedocs.io/en/latest/data-configuration/#docs_metadata_fields
 docs_metadata_fields:
     - key: reporting_status
       label: Reporting status
-    - key: SDG_CUSTODIAN_AGENCIES__GLOBAL
+    - key: un_designated_tier
+      label: UN designated tier
+    - key: un_custodian_agency
       label: UN custodian agency
     - key: data_non_statistical
       label: Non-statistical

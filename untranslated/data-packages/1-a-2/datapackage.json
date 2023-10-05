@@ -12,7 +12,11 @@
         "fields": [
           {
             "name": "Year",
-            "type": "number"
+            "type": "integer"
+          },
+          {
+            "name": "SERIES",
+            "type": "string"
           },
           {
             "name": "Value",
@@ -24,5 +28,5 @@
   ],
   "profile": "data-package",
   "name": "1-a-2",
-  "title": "Proportion of total government spending on essential services (education, health and social protection)"
+  "title": "global_indicators.1-a-2-title"
 }

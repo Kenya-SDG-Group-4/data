@@ -1,11 +1,11 @@
-Value,en,Disaggregation combinations using this value,Number of indicators
-01_o,Western,1,1
-02_o,Central,1,1
-03_o,Greater Accra,1,1
-04_o,Volta,1,1
-05_o,Eastern,1,1
-06_o,Ashanti,1,1
-07_o,Brong Ahafo,1,1
-08_o,Northern,1,1
-09_o,Upper East,1,1
-10_o,Upper West,1,1
+Value,en,fr,Disaggregation combinations using this value,Number of indicators
+01_o,Western,01_o,1,1
+02_o,Central,02_o,1,1
+03_o,Greater Accra,03_o,1,1
+04_o,Volta,04_o,1,1
+05_o,Eastern,05_o,1,1
+06_o,Ashanti,06_o,1,1
+07_o,Brong Ahafo,07_o,1,1
+08_o,Northern,08_o,1,1
+09_o,Upper East,09_o,1,1
+10_o,Upper West,10_o,1,1
